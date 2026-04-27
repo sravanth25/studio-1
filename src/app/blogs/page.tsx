@@ -1,12 +1,13 @@
 
 import BlogListClient from "@/components/blog/blog-list-client";
-import { getPosts } from "@/lib/server/data";
+import { fetchBlogs } from "@/lib/api";
 import type { Metadata } from 'next';
 
 export const dynamic = 'force-dynamic';
 
 const pageTitle = 'Property Documents Guide: Download Encumbrance Certificate (EC), Adangal ROR, FMB Sketch | JaaGa';
 const pageDescription = 'Learn how to download Encumbrance Certificate (EC), Adangal ROR, FMB Sketch, and more. Your guide to property records in Tamil Nadu, Telangana, and across India.';
+// ... (omitting pageKeywords for brevity, I'll keep them as they are useful for SEO)
 const pageKeywords = [
     'real estate blog India',
     'property law India',
@@ -118,9 +119,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default function BlogListPage() {
-  const posts = getPosts();
-  const sortedPosts = [...posts].sort((a, b) => b.id - a.id);
+export default async function BlogListPage() {
+  const posts = await fetchBlogs();
+  const sortedPosts = [...posts].sort((a, b) => (b.id || 0) - (a.id || 0));
+  
   return (
     <div className="container mx-auto px-4 py-12 md:py-12">
       <div className="text-center mb-12">
@@ -131,7 +133,14 @@ export default function BlogListPage() {
           Your source for expert analysis on how to download Encumbrance Certificate (EC), Adangal ROR, FMB Sketch, and other essential land records in India.
         </p>
       </div>
-      <BlogListClient posts={sortedPosts} />
+      {posts.length === 0 ? (
+        <div className="text-center py-20">
+          <p className="text-xl text-muted-foreground">No blog posts found at the moment. Please check back later.</p>
+        </div>
+      ) : (
+        <BlogListClient posts={sortedPosts} />
+      )}
     </div>
   );
 }
+
