@@ -1,0 +1,9 @@
+{
+  "buildCommand": "node vercel-build.mjs",
+  "outputDirectory": "dist",
+  "installCommand": "echo 'skip'",
+  "framework": null,
+  "rewrites": [
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  ]
+}
