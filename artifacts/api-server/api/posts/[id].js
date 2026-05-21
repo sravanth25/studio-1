@@ -1,7 +1,9 @@
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 
-const dataFilePath = path.join(process.cwd(), "data/posts.json");
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const dataFilePath = path.join(__dirname, "../../data/posts.json");
 
 function getPosts() {
   if (!fs.existsSync(dataFilePath)) return [];
