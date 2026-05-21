@@ -1,4 +1,3 @@
-import type { VercelRequest, VercelResponse } from "@vercel/node";
 import fs from "fs";
 import path from "path";
 
@@ -9,7 +8,8 @@ function getPosts() {
   return JSON.parse(fs.readFileSync(dataFilePath, "utf-8"));
 }
 
-export default function handler(req: VercelRequest, res: VercelResponse) {
+// @ts-ignore
+export default function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
