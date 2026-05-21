@@ -1,0 +1,9 @@
+{
+  "buildCommand": "pnpm install && cd artifacts/jaaga && npx vite build --config vite.config.vercel.ts",
+  "outputDirectory": "artifacts/jaaga/dist",
+  "installCommand": "pnpm install",
+  "framework": null,
+  "rewrites": [
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  ]
+}
