@@ -1,6 +1,6 @@
 {
   "buildCommand": "pnpm --filter @workspace/jaaga run build:vercel",
-  "outputDirectory": "dist",
+  "outputDirectory": "artifacts/jaaga/dist",
   "installCommand": "pnpm install --no-frozen-lockfile",
   "framework": null,
   "rewrites": [
