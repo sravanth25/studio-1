@@ -1,5 +1,5 @@
 {
-  "buildCommand": "pnpm --filter @workspace/jaaga run build:vercel && cp -r artifacts/jaaga/dist ./dist",
+  "buildCommand": "pnpm --filter @workspace/jaaga run build:vercel && node -e \"const{cpSync}=require('fs');cpSync('artifacts/jaaga/dist','dist',{recursive:true})\"",
   "outputDirectory": "dist",
   "installCommand": "pnpm install --no-frozen-lockfile",
   "framework": null,
