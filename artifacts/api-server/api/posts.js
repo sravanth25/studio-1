@@ -8,7 +8,6 @@ function getPosts() {
   return JSON.parse(fs.readFileSync(dataFilePath, "utf-8"));
 }
 
-// @ts-ignore
 export default function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");

@@ -8,7 +8,6 @@ function getPosts() {
   return JSON.parse(fs.readFileSync(dataFilePath, "utf-8"));
 }
 
-// @ts-ignore
 export default function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "PUT,DELETE,OPTIONS");
@@ -20,12 +19,12 @@ export default function handler(req, res) {
   const posts = getPosts();
 
   if (req.method === "DELETE") {
-    const filtered = posts.filter((p: { id: number }) => p.id !== id);
+    const filtered = posts.filter((p) => p.id !== id);
     return res.status(200).json({ success: true, removed: posts.length - filtered.length });
   }
 
   if (req.method === "PUT") {
-    const idx = posts.findIndex((p: { id: number }) => p.id === id);
+    const idx = posts.findIndex((p) => p.id === id);
     if (idx === -1) return res.status(404).json({ error: "Post not found" });
     const updated = { ...posts[idx], ...req.body };
     return res.status(200).json(updated);
