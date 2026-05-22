@@ -1,7 +1,4 @@
-
-
-
-import {z} from 'zod';
+import { z } from 'zod';
 
 const formSchema = z.object({
   id: z.number(),
@@ -10,32 +7,30 @@ const formSchema = z.object({
 });
 
 export async function editPostAction(values: unknown) {
-  const posts = getPosts();
-
   try {
     const validatedValues = formSchema.parse(values);
-    
-    const postIndex = posts.findIndex(p => p.id === validatedValues.id);
 
-    if (postIndex === -1) {
-        return {success: false, error: 'Post not found.'};
-    }
-
-    const originalPost = posts[postIndex];
-
-    // Update only title and content
-    posts[postIndex] = {
-        ...originalPost,
+    const response = await fetch(`/api/posts/${validatedValues.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
         title: validatedValues.title,
         content: validatedValues.content,
-    };
+      }),
+    });
 
-    return {success: true, data: posts[postIndex]};
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      return { success: false, error: errorData.error || `Failed to update post: ${response.statusText}` };
+    }
+
+    const data = await response.json();
+    return { success: true, data };
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return {success: false, error: 'Invalid input: ' + error.errors.map(e => e.message).join(', ')};
+      return { success: false, error: 'Invalid input: ' + error.errors.map(e => e.message).join(', ') };
     }
     console.error(error);
-    return {success: false, error: 'An unexpected error occurred.'};
+    return { success: false, error: error instanceof Error ? error.message : 'An unexpected error occurred.' };
   }
 }

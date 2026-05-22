@@ -50,12 +50,17 @@ export function ExistingPosts() {
     };
   }, []);
 
-  const handleDelete = () => {
-    if (postToDelete) {
-      // Note: This only deletes from the client-side state for this demo.
-      // A full implementation would require an API call to delete the post from the server.
-      setPosts(prevPosts => prevPosts.filter(post => post.id !== postToDelete.id));
-      setPostToDelete(null);
+  const handleDelete = async () => {
+    if (!postToDelete) return;
+    const id = postToDelete.id;
+    setPostToDelete(null);
+    try {
+      const response = await fetch(`/api/posts/${id}`, { method: 'DELETE' });
+      if (!response.ok) throw new Error('Delete failed');
+      setPosts(prevPosts => prevPosts.filter(post => post.id !== id));
+    } catch (err) {
+      console.error('Failed to delete post:', err);
+      fetchPosts();
     }
   };
 
