@@ -1,0 +1,56 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is property verification?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Property verification is the legal process of examining ownership, title records, encumbrances, approvals, and litigation risks before completing a property transaction."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is title verification important?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Title verification confirms whether the seller has valid ownership rights and whether the property has legal defects or disputes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is included in property due diligence?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Property due diligence includes ownership verification, encumbrance checks, mortgage verification, litigation search, tax assessment, and approval verification."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is an encumbrance certificate check important?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An encumbrance certificate check helps identify mortgages, legal claims, attachments, and previous transactions linked to the property."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do lawyers conduct mortgage verification?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lawyers conduct mortgage verification using bank records, CERSAI filings, mortgage deeds, and encumbrance certificate analysis."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can AI improve property legal verification?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. AI-powered legal intelligence platforms help improve verification speed, risk detection, document analysis, and legal workflow standardization."
+      }
+    }
+  ]
+}
+</script>
