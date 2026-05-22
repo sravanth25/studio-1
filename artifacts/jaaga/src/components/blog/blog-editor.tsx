@@ -209,12 +209,14 @@ export function BlogEditor() {
                 <FormItem>
                   <FormLabel>Content</FormLabel>
                   <FormControl>
-                     <ReactQuill
+                    <Suspense fallback={<div className="min-h-[400px] flex items-center justify-center text-muted-foreground">Loading editor…</div>}>
+                      <ReactQuill
                         theme="snow"
                         value={field.value}
                         onChange={field.onChange}
                         className="min-h-[400px] bg-white text-gray-900"
                       />
+                    </Suspense>
                   </FormControl>
                   <FormDescription>Full content of the blog post.</FormDescription>
                   <FormMessage />
